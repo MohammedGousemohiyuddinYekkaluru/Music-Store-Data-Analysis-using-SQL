@@ -40,6 +40,13 @@ GROUP BY billing_country
 ORDER BY Total_Invoices DESC
 LIMIT 3;
 
+-- OR 
+
+SELECT total
+FROM invoice
+ORDER BY total DESC
+LIMIT 3;
+
 -- =====================================
 -- EASY - Question 4
 -- =====================================
@@ -55,6 +62,8 @@ FROM invoice
 GROUP BY billing_city
 ORDER BY Total_Invoices DESC
 LIMIT 1;
+
+-- OR
 
 SELECT
 	billing_city,
@@ -84,8 +93,9 @@ GROUP BY c.customer_id
 ORDER BY total_spending DESC
 LIMIT 1;
 
+-- OR
 
-SELECT customer.customer_id, first_name, last_name, SUM(total) AS total_spending
+SELECT customer.customer_id, first_name, last_name, SUM(invoice.total) AS total_spending
 FROM customer
 JOIN invoice ON customer.customer_id = invoice.customer_id
 GROUP BY customer.customer_id
